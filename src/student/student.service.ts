@@ -32,4 +32,15 @@ export class StudentService {
 
     return this.studentRepository.save(student);
   }
+
+  async getManyStudents(studentIds: string[]): Promise<Student[]> {
+    return this.studentRepository.find({
+      where: {
+        id: {
+          // @ts-ignore
+          $in: studentIds,
+        },
+      },
+    });
+  }
 }
